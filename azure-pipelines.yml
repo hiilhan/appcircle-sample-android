@@ -47,20 +47,29 @@ steps:
     targetFolder: '$(build.artifactStagingDirectory)'
     overWrite: true
     flattenFolders: true
-- task: CmdLine@2
-  inputs:
-    script: 'mv $(build.artifactStagingDirectory)/apk-release-unsigned.apk $(build.artifactStagingDirectory)/apk-release-signed.apk'
-    # workingDirectory: '$(build.artifactStagingDirectory)'
-  displayName: 'Rename APK'
-# - bash: |
-#     mv "$(build.artifactStagingDirectory)/apk-release-unsigned.apk" "$(build.artifactStagingDirectory)/apk-release-signed.apk"
-#   displayName: 'Rename APK'
+
+- bash: |
+    ls -la $(build.artifactStagingDirectory)
+  displayName: 'List files in artifact directory'
 
 - task: PublishBuildArtifacts@1
   inputs:
     pathToPublish: '$(Build.ArtifactStagingDirectory)'
     artifactName: 'ac-sample-artifact'
     publishLocation: 'Container'
+
+- bash: |
+    ls -la $(Build.ArtifactStagingDirectory)
+  displayName: 'List files in artifact directory'
+
+- task: CmdLine@2
+  inputs:
+    script: 'mv $(Build.ArtifactStagingDirectory)/apk-release-unsigned.apk $(Build.ArtifactStagingDirectory)/apk-release-signed.apk'
+    # workingDirectory: '$(build.artifactStagingDirectory)'
+  displayName: 'Rename APK'
+# - bash: |
+#     mv "$(build.artifactStagingDirectory)/apk-release-unsigned.apk" "$(build.artifactStagingDirectory)/apk-release-signed.apk"
+#   displayName: 'Rename APK'
 
 - task: AppcircleDistribute@0
   inputs:
