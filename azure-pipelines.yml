@@ -33,13 +33,13 @@ steps:
     tasks: 'clean assembleRelease'
     # options: '-PkeystoreFile=$(keystore.secureFilePath) -PkeystorePassword=$(keystorePassword) -PkeyAlias=$(keyAlias) -PkeyPassword=$(keyPassword)'
 
-# - task: AndroidSigning@3
-#   inputs:
-#     apkFiles: '**/*.apk'
-#     apksignerKeystoreFile: 'ac-sample.jks'
-#     apksignerKeystorePassword: '$(keystorePassword)'
-#     apksignerKeystoreAlias: '$(keyAlias)'
-#     apksignerKeyPassword: '$(keyPassword)'
+- task: AndroidSigning@3
+  inputs:
+    apkFiles: '**/*.apk'
+    apksignerKeystoreFile: 'ac-sample.jks'
+    apksignerKeystorePassword: '$(keystorePassword)'
+    apksignerKeystoreAlias: '$(keyAlias)'
+    apksignerKeyPassword: '$(keyPassword)'
 
 - task: CopyFiles@2
   inputs:
@@ -58,5 +58,5 @@ steps:
   inputs:
     accessToken: '$(ac-pat)'
     profileId: '$(ac-dist-profile-id)'
-    appPath: '$(Build.ArtifactStagingDirectory)/app-release-unsigned.apk'
+    appPath: '$(Build.ArtifactStagingDirectory)/app-release-signed.apk'
     message: '$(ac-dist-message)'
