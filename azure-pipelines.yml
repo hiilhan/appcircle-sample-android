@@ -3,11 +3,20 @@
 # Add steps that test, sign, and distribute the APK, save build artifacts, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/android
 
+# Android
+# Build a Gradle-based Android project.
+# Add steps that test, sign, and distribute an app, save build artifacts, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/android
+
+variables:
+- group: AppVariables-Common
+- group: AppVariables-TD
+
 trigger:
-- master
+- test/azure-extension-td
 
 pool:
-  vmImage: 'macos-latest'
+  vmImage: 'ubuntu-latest'
 
 steps:
 - task: Gradle@2
@@ -17,4 +26,24 @@ steps:
     gradleOptions: '-Xmx3072m'
     publishJUnitResults: false
     testResultsFiles: '**/TEST-*.xml'
-    tasks: 'assembleDebug'
+    tasks: 'assembleRelease'
+
+- task: CopyFiles@2
+  inputs:
+    contents: '**/*.apk'
+    targetFolder: '$(build.artifactStagingDirectory)'
+    overWrite: true
+    flattenFolders: true
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathToPublish: '$(Build.ArtifactStagingDirectory)'
+    artifactName: 'ac-sample-artifact'
+    publishLocation: 'Container'
+
+- task: AppcircleDistribute@0
+  inputs:
+    accessToken: '$(ac-pat)'
+    profileId: '$(ac-dist-profile-id)'
+    appPath: '$(Build.ArtifactStagingDirectory)/*.apk'
+    message: '$(ac-dist-message)'
