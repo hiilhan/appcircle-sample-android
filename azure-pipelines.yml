@@ -10,10 +10,10 @@
 
 variables:
 - group: AppVariables-Common
-- group: AppVariables-TD
+- group: AppVariables-EAS
 
 trigger:
-- test/azure-extension-td
+- test/azure-extension-eas
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -60,9 +60,11 @@ steps:
     artifactName: 'ac-sample-artifact'
     publishLocation: 'Container'
 
-- task: AppcircleDistribute@0
+- task: AppcircleEnterpriseStore@0
   inputs:
     accessToken: '$(ac-pat)'
-    profileId: '$(ac-dist-profile-id)'
+    entProfileId: '$(ac-entp-profile-id-android)'
     appPath: '$(Build.ArtifactStagingDirectory)/app-release-signed.apk'
-    message: '$(ac-dist-message)'
+    summary: '$(ac-summary-notes)'
+    releaseNotes: '$(ac-release-notes)'
+    publishType: 'Beta'
