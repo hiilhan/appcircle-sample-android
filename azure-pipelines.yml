@@ -49,7 +49,7 @@ steps:
     flattenFolders: true
 - task: CmdLine@2
   inputs:
-    script: 'mv "$(build.artifactStagingDirectory)/apk-release-unsigned.apk" "$(build.artifactStagingDirectory)/apk-release-signed.apk"'
+    script: 'mv $(build.artifactStagingDirectory)/apk-release-unsigned.apk $(build.artifactStagingDirectory)/apk-release-signed.apk'
     # workingDirectory: '$(build.artifactStagingDirectory)'
   displayName: 'Rename APK'
 # - bash: |
