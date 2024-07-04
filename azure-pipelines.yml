@@ -19,6 +19,10 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
+# - task: DownloadSecureFile@1
+#   name: keystore
+#   inputs:
+#     secureFile: 'ac-sample.jks'
 - task: Gradle@2
   inputs:
     workingDirectory: ''
@@ -26,7 +30,16 @@ steps:
     gradleOptions: '-Xmx3072m'
     publishJUnitResults: false
     testResultsFiles: '**/TEST-*.xml'
-    tasks: 'assembleRelease'
+    tasks: 'clean assembleRelease'
+    # options: '-PkeystoreFile=$(keystore.secureFilePath) -PkeystorePassword=$(keystorePassword) -PkeyAlias=$(keyAlias) -PkeyPassword=$(keyPassword)'
+
+# - task: AndroidSigning@3
+#   inputs:
+#     apkFiles: '**/*.apk'
+#     apksignerKeystoreFile: 'ac-sample.jks'
+#     apksignerKeystorePassword: '$(keystorePassword)'
+#     apksignerKeystoreAlias: '$(keyAlias)'
+#     apksignerKeyPassword: '$(keyPassword)'
 
 - task: CopyFiles@2
   inputs:
@@ -45,5 +58,5 @@ steps:
   inputs:
     accessToken: '$(ac-pat)'
     profileId: '$(ac-dist-profile-id)'
-    appPath: '$(Build.ArtifactStagingDirectory)/*.apk'
+    appPath: '$(Build.ArtifactStagingDirectory)/app-release-unsigned.apk'
     message: '$(ac-dist-message)'
