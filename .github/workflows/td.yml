@@ -33,7 +33,7 @@ jobs:
           PROPERTIES_PATH=$GITHUB_WORKSPACE/keystore/keystore.properties
           
           # write to file
-          echo -n "$AC_SAMPLE_JKS_BASE64" | base64 --decode -o $JKS_PATH
+          echo -n "$AC_SAMPLE_JKS_BASE64" | base64 --decode > $JKS_PATH
           echo -n "$KEYSTORE_PROPERTIES" > $PROPERTIES_PATH
 
       - name: Debug Env.
