@@ -1,0 +1,51 @@
+name: TD
+
+on:
+  push:
+    branches: [ "test/github-extensions-td-eas" ]
+  pull_request:
+    branches: [ "test/github-extensions-td-eas" ]
+
+jobs:
+  build:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.0
+          bundler-cache: true
+      
+      - name: Decode the keys
+        env:
+          AC_SAMPLE_JKS_BASE64: ${{ secrets.AC_SAMPLE_JKS }}
+          KEYSTORE_PROPERTIES: ${{ vars.KEYSTORE_PROPERTIES }}
+          # DOT_ENV: ${{ vars.DOT_ENV }}
+        run: |
+          # create variables
+          mkdir -p $GITHUB_WORKSPACE/keystore
+          JKS_PATH=$GITHUB_WORKSPACE/keystore/ac-sample.jks
+          PROPERTIES_PATH=$GITHUB_WORKSPACE/keystore/keystore.properties
+          
+          # write to file
+          echo -n "$AC_SAMPLE_JKS_BASE64" | base64 --decode -o $JKS_PATH
+          echo -n "$KEYSTORE_PROPERTIES" > $JKS_PATH
+
+      - name: Debug Env.
+        run: |
+          echo "$RUNNER_TEMP"
+          ls $RUNNER_TEMP
+          echo "$GITHUB_WORKSPACE"
+          ls $GITHUB_WORKSPACE
+          
+      - name: Build
+        run: |
+          echo $AC_PP_UUID
+          bundle exec fastlane android build_signed
+
+      
