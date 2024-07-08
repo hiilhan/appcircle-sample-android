@@ -1,0 +1,42 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:android)
+
+require 'dotenv'
+Dotenv.load('.env.development') # specify your environment-specific file
+
+platform :android do
+  desc "Build and sign the Android app"
+  lane :build_signed do
+    gradle(
+      task: 'clean assemble',
+      build_type: 'Release'
+    )
+  end
+  lane :deploy_td do
+    puts "Access Token: #{ENV["AC_ACCESS_TOKEN"]}"
+    puts "Profile ID: #{ENV["AC_PROFILE_ID"]}"
+    puts "App Path: #{ENV["AC_APP_PATH"]}"
+    puts "Message: #{ENV["AC_MESSAGE"]}"
+    
+    appcircle_testing_distribution(
+      accessToken: ENV["AC_ACCESS_TOKEN"], # Your Appcircle Access Token
+      profileID: ENV["AC_PROFILE_ID"], # ID of your Appcircle Distribution Profile
+      appPath: ENV["AC_APP_PATH"], # Path to your iOS .ipa or .xcarchive, or Android APK or App Bundle
+      message: ENV["AC_MESSAGE"], # Your Message
+    )
+  end
+end
