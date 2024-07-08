@@ -16,7 +16,7 @@
 default_platform(:android)
 
 require 'dotenv'
-Dotenv.load('.env.development') # specify your environment-specific file
+Dotenv.load('.env.td') # specify your environment-specific file
 
 platform :android do
   desc "Build and sign the Android app"
@@ -31,7 +31,7 @@ platform :android do
     puts "Profile ID: #{ENV["AC_PROFILE_ID"]}"
     puts "App Path: #{ENV["AC_APP_PATH"]}"
     puts "Message: #{ENV["AC_MESSAGE"]}"
-    
+
     appcircle_testing_distribution(
       accessToken: ENV["AC_ACCESS_TOKEN"], # Your Appcircle Access Token
       profileID: ENV["AC_PROFILE_ID"], # ID of your Appcircle Distribution Profile

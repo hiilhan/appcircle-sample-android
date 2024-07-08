@@ -11,3 +11,8 @@
 /build
 /captures
 .externalNativeBuild
+
+# Secrets
+keystore/*.jks
+keystore/keystore.properties
+fastlane/.env.td

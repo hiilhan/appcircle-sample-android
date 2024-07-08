@@ -1,0 +1,4 @@
+AC_ACCESS_TOKEN=your_access_token
+AC_PROFILE_ID=your_profile_id
+AC_APP_PATH=app/build/outputs/apk/release/app-release.apk
+AC_MESSAGE=your_message
