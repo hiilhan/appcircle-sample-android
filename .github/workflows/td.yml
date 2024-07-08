@@ -48,4 +48,14 @@ jobs:
           echo $AC_PP_UUID
           bundle exec fastlane android build_signed
 
+      - name: Appcircle Testing Distribution
+        uses: appcircleio/appcircle-testing-distribution-githubaction@v0.0.1
+        env:
+          AC_ACCESS_TOKEN: ${{ secrets.AC_ACCESS_TOKEN }}
+          AC_PROFILE_ID: ${{ vars.AC_PROFILE_ID }}
+        with:
+          accessToken: $AC_ACCESS_TOKEN
+          profileID: $AC_PROFILE_ID
+          appPath: $GITHUB_WORKSPACE/app/build/outputs/apk/release/app-release.apk
+          message: "Hello from Github to TD"
       
