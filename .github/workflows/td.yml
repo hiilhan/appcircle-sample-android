@@ -34,7 +34,7 @@ jobs:
           
           # write to file
           echo -n "$AC_SAMPLE_JKS_BASE64" | base64 --decode -o $JKS_PATH
-          echo -n "$KEYSTORE_PROPERTIES" > $JKS_PATH
+          echo -n "$KEYSTORE_PROPERTIES" > $PROPERTIES_PATH
 
       - name: Debug Env.
         run: |
