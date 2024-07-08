@@ -16,7 +16,9 @@
 default_platform(:android)
 
 require 'dotenv'
-Dotenv.load('.env.td') # specify your environment-specific file
+Dotenv.load('.env.common') # specify your environment-specific file
+Dotenv.load('.env.td')
+Dotenv.load('.env.eas')
 
 platform :android do
   desc "Build and sign the Android app"
@@ -36,7 +38,18 @@ platform :android do
       accessToken: ENV["AC_ACCESS_TOKEN"], # Your Appcircle Access Token
       profileID: ENV["AC_PROFILE_ID"], # ID of your Appcircle Distribution Profile
       appPath: ENV["AC_APP_PATH"], # Path to your iOS .ipa or .xcarchive, or Android APK or App Bundle
-      message: ENV["AC_MESSAGE"], # Your Message
+      message: ENV["AC_MESSAGE"] # Your Message
     )
   end
+
+  lane :deploy_eas do
+      appcircle_enterprise_store(
+        accessToken: ENV["AC_ACCESS_TOKEN"],
+        entProfileId: ENV["ENTERPRISE_PROFILE_ID"],
+        appPath: ENV["AC_APP_PATH"],
+        summary: ENV["SUMMARY"],
+        releaseNotes: ENV["RELEASE_NOTES"],
+        publishType: ENV["PUBLISH_TYPE"] # Assign the appropriate number based on the status: None (0), Beta (1), Live (2)
+      )
+    end
 end

@@ -15,4 +15,6 @@
 # Secrets
 keystore/*.jks
 keystore/keystore.properties
+fastlane/.env.common
 fastlane/.env.td
+fastlane/.env.eas

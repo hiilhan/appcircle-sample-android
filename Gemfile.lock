@@ -109,6 +109,7 @@ GEM
       xcodeproj (>= 1.13.0, < 2.0.0)
       xcpretty (~> 0.3.0)
       xcpretty-travis-formatter (>= 0.0.3, < 2.0.0)
+    fastlane-plugin-appcircle_enterprise_store (0.0.3)
     fastlane-plugin-appcircle_testing_distribution (0.1.5)
     gh_inspector (1.1.3)
     google-apis-androidpublisher_v3 (0.54.0)
@@ -216,6 +217,7 @@ PLATFORMS
 
 DEPENDENCIES
   fastlane
+  fastlane-plugin-appcircle_enterprise_store
   fastlane-plugin-appcircle_testing_distribution
 
 BUNDLED WITH
