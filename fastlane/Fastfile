@@ -29,10 +29,10 @@ platform :android do
     )
   end
   lane :deploy_td do
-    puts "Access Token: #{ENV["AC_ACCESS_TOKEN"]}"
-    puts "Profile ID: #{ENV["AC_PROFILE_ID"]}"
-    puts "App Path: #{ENV["AC_APP_PATH"]}"
-    puts "Message: #{ENV["AC_MESSAGE"]}"
+    # puts "Access Token: #{ENV["AC_ACCESS_TOKEN"]}"
+    # puts "Profile ID: #{ENV["AC_PROFILE_ID"]}"
+    # puts "App Path: #{ENV["AC_APP_PATH"]}"
+    # puts "Message: #{ENV["AC_MESSAGE"]}"
 
     appcircle_testing_distribution(
       accessToken: ENV["AC_ACCESS_TOKEN"], # Your Appcircle Access Token
