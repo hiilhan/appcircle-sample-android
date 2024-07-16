@@ -34,10 +34,19 @@ pipeline {
         }
         stage('Deploy') {
             steps {
+                // TD
+                // greet accessToken: hudson.util.Secret.fromString(AC_PAT),
+                //       profileID: '${PROFILE_ID}',
+                //       appPath: '${DIR}/app/build/outputs/apk/release/app-release-unsigned.apk',
+                //       message: 'Hello from Jenkins to TD Android'
+                      
+                // EAS
                 greet accessToken: hudson.util.Secret.fromString(AC_PAT),
-                      profileID: '${PROFILE_ID}',
+                      entProfileId: '${ENT_PROFILE_ID}',
                       appPath: '${DIR}/app/build/outputs/apk/release/app-release-unsigned.apk',
-                      message: 'Hello from Jenkins to TD Android'
+                      summary: 'This is a summary.',
+                      releaseNote: 'This is a release note.',
+                      publishType: '1'
             }
         }
     }
