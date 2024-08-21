@@ -59,7 +59,7 @@ jobs:
         with:
           accessToken: $AC_ACCESS_TOKEN
           profileName: $AC_PROFILE_NAME
-          createProfileIfNotExists: $CREATE_PROFILE_IF_NOT_EXISTS
+          createProfileIfNotExists: $AC_CREATE_PROFILE_IF_NOT_EXISTS
           appPath: $AC_APP_PATH
           message: "Hello from Github to TD"
 
