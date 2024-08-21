@@ -49,14 +49,17 @@ jobs:
           bundle exec fastlane android build_signed
 
       - name: Appcircle Testing Distribution
-        uses: appcircleio/appcircle-testing-distribution-githubaction@v0.0.2
+        # uses: appcircleio/appcircle-testing-distribution-githubaction@v0.0.2
+        uses: appcircleio/appcircle-testing-distribution-githubaction@feat/SP-201
         env:
           AC_ACCESS_TOKEN: ${{ secrets.AC_ACCESS_TOKEN }}
-          AC_PROFILE_ID: ${{ vars.AC_PROFILE_ID }}
+          AC_PROFILE_NAME: ${{ vars.AC_PROFILE_NAME }}
+          AC_CREATE_PROFILE_IF_NOT_EXISTS: ${{ vars.AC_CREATE_PROFILE_IF_NOT_EXISTS }}
           AC_APP_PATH: ${{ github.workspace }}/app/build/outputs/apk/release/app-release.apk
         with:
           accessToken: $AC_ACCESS_TOKEN
-          profileID: $AC_PROFILE_ID
+          profileName: $AC_PROFILE_NAME
+          createProfileIfNotExists: $CREATE_PROFILE_IF_NOT_EXISTS
           appPath: $AC_APP_PATH
           message: "Hello from Github to TD"
 
