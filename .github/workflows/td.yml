@@ -1,10 +1,11 @@
 name: TD
 
 on:
-  push:
-    branches: [ "test/github-extensions-td-eas" ]
-  pull_request:
-    branches: [ "test/github-extensions-td-eas" ]
+  # push:
+  #   branches: [ "test/github-extensions-td-eas" ]
+  # pull_request:
+  #   branches: [ "test/github-extensions-td-eas" ]
+  workflow_dispatch:
 
 jobs:
   build:
