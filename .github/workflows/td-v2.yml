@@ -46,7 +46,7 @@ jobs:
       - name: Build
         run: |
           echo $AC_PP_UUID
-          bundle exec fastlane android build_signed
+          bundle exec fastlane android build_signed_apk
 
       - name: Appcircle Testing Distribution
         uses: appcircleio/appcircle-testing-distribution-githubaction@feat/SP-201
@@ -56,5 +56,3 @@ jobs:
           createProfileIfNotExists: ${{ vars.AC_CREATE_PROFILE_IF_NOT_EXISTS }}
           appPath: ${{ github.workspace }}/${{ vars.AC_APP_PATH }}
           message: "Hello from Github to TD"
-
-      

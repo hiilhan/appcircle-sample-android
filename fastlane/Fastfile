@@ -22,34 +22,17 @@ Dotenv.load('.env.eas')
 
 platform :android do
   desc "Build and sign the Android app"
-  lane :build_signed do
+  lane :build_signed_apk do
     gradle(
       task: 'clean assemble',
       build_type: 'Release'
     )
   end
-  lane :deploy_td do
-    puts "Access Token: #{ENV["AC_ACCESS_TOKEN"]}"
-    puts "Profile ID: #{ENV["AC_PROFILE_ID"]}"
-    puts "App Path: #{ENV["AC_APP_PATH"]}"
-    puts "Message: #{ENV["AC_MESSAGE"]}"
 
-    appcircle_testing_distribution(
-      accessToken: ENV["AC_ACCESS_TOKEN"], # Your Appcircle Access Token
-      profileID: ENV["AC_PROFILE_ID"], # ID of your Appcircle Distribution Profile
-      appPath: ENV["AC_APP_PATH"], # Path to your iOS .ipa or .xcarchive, or Android APK or App Bundle
-      message: ENV["AC_MESSAGE"] # Your Message
+  lane :build_signed_aab do
+    gradle(
+      task: 'clean bundle',
+      build_type: 'Release'
     )
   end
-
-  lane :deploy_eas do
-      appcircle_enterprise_store(
-        accessToken: ENV["AC_ACCESS_TOKEN"],
-        entProfileId: ENV["ENTERPRISE_PROFILE_ID"],
-        appPath: ENV["AC_APP_PATH"],
-        summary: ENV["SUMMARY"],
-        releaseNotes: ENV["RELEASE_NOTES"],
-        publishType: ENV["PUBLISH_TYPE"] # Assign the appropriate number based on the status: None (0), Beta (1), Live (2)
-      )
-    end
 end
