@@ -44,14 +44,15 @@ jobs:
           echo "$GITHUB_WORKSPACE"
           ls $GITHUB_WORKSPACE
           
-      - name: Build
-        run: |
-          echo $AC_PP_UUID
-          bundle exec fastlane android build_signed_aab
+      # - name: Build
+      #   run: |
+      #     echo $AC_PP_UUID
+      #     bundle exec fastlane android build_signed_aab
 
       - name: Find Artifacts
         run: |
           find "${GITHUB_WORKSPACE}" -type f \( -name "*.apk" -o -name "*.aab" \)
+          ls -l "${GITHUB_WORKSPACE}/app/build/outputs/invalid/"
 
       - name: Appcircle Testing Distribution
         uses: appcircleio/appcircle-testing-distribution-githubaction@feat/SP-201
