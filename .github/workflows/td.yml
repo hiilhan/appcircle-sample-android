@@ -49,15 +49,9 @@ jobs:
           bundle exec fastlane android build_signed
 
       - name: Appcircle Testing Distribution
-        # uses: appcircleio/appcircle-testing-distribution-githubaction@v0.0.2
-        uses: appcircleio/appcircle-testing-distribution-githubaction@feat/SP-201
-        # env:
-          # ACCESS_TOKEN: ${{ secrets.AC_ACCESS_TOKEN }}
-          # PROFILE_NAME: ${{ vars.AC_PROFILE_NAME }}
-          # CREATE_PROFILE_IF_NOT_EXISTS: ${{ vars.AC_CREATE_PROFILE_IF_NOT_EXISTS }}
-          # APP_PATH: ${{ github.workspace }}/app/build/outputs/apk/release/app-release.apk
+        uses: appcircleio/appcircle-testing-distribution-githubaction@2c2a8f29e40992855e2b8672d3e3df4167643ac4 # feat/SP-201
         with:
-          accessToken: ${{ secrets.AC_ACCESS_TOKEN }}
+          personalAPIToken: ${{ secrets.AC_ACCESS_TOKEN }}
           profileName: ${{ vars.AC_PROFILE_NAME }}
           createProfileIfNotExists: ${{ vars.AC_CREATE_PROFILE_IF_NOT_EXISTS }}
           appPath: ${{ github.workspace }}/${{ vars.AC_APP_PATH }}
