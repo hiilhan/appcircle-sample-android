@@ -1,11 +1,10 @@
 name: EAS
 
-on:
+on: workflow_dispatch
   # push:
   #   branches: [ "test/github-extensions-td-eas" ]
   # pull_request:
   #   branches: [ "test/github-extensions-td-eas" ]
-  workflow_dispatch:
 
 jobs:
   build:
