@@ -53,12 +53,12 @@ jobs:
         # uses: appcircleio/appcircle-testing-distribution-githubaction@v0.0.2
         uses: appcircleio/appcircle-testing-distribution-githubaction@feat/SP-201
         env:
-          ACCESS_TOKEN: ${{ secrets.AC_ACCESS_TOKEN2 }}
+          ACCESS_TOKEN: ${{ secrets.AC_ACCESS_TOKEN }}
           PROFILE_NAME: ${{ vars.AC_PROFILE_NAME }}
           CREATE_PROFILE_IF_NOT_EXISTS: ${{ vars.AC_CREATE_PROFILE_IF_NOT_EXISTS }}
           APP_PATH: ${{ github.workspace }}/app/build/outputs/apk/release/app-release.apk
         with:
-          accessToken: $ACCESS_TOKEN
+          accessToken: ${{ secrets.AC_ACCESS_TOKEN }} # $ACCESS_TOKEN
           profileName: $PROFILE_NAME
           createProfileIfNotExists: false # $CREATE_PROFILE_IF_NOT_EXISTS
           appPath: $APP_PATH
