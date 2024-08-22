@@ -20,8 +20,8 @@ android {
             versionName = "1.0." + buildNumber
             versionCode = Integer.valueOf(buildNumber)
         } else {
-            versionCode 4
-            versionName "1.0.4"
+            versionCode 5
+            versionName "1.0.5"
         }
         
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
