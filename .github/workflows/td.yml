@@ -51,7 +51,7 @@ jobs:
       - name: Appcircle Testing Distribution
         # uses: appcircleio/appcircle-testing-distribution-githubaction@v0.0.2
         uses: appcircleio/appcircle-testing-distribution-githubaction@feat/SP-201
-        env:
+        # env:
           # ACCESS_TOKEN: ${{ secrets.AC_ACCESS_TOKEN }}
           # PROFILE_NAME: ${{ vars.AC_PROFILE_NAME }}
           # CREATE_PROFILE_IF_NOT_EXISTS: ${{ vars.AC_CREATE_PROFILE_IF_NOT_EXISTS }}
