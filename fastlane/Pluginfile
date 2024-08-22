@@ -2,5 +2,5 @@
 #
 # Ensure this file is checked in to source control!
 
-gem 'fastlane-plugin-appcircle_testing_distribution'
-gem 'fastlane-plugin-appcircle_enterprise_store'
+# gem 'fastlane-plugin-appcircle_testing_distribution', git: 'https://github.com/appcircleio/fastlane_plugin_appcircle_testing_distribution.git', branch: 'feat/SP-201' #, ref: 'b7e7f9eb08bf742eae91d49009776bffdbdc391a'
+gem 'fastlane-plugin-appcircle_enterprise_store', git: 'https://github.com/appcircleio/fastlane-plugin-appcircle_enterprise_store.git', branch: 'feat/SP-201' #, ref: 'dd1bcdcabcb38def175aca5453c8fda78056b242'
