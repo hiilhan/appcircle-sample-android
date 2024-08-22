@@ -4,7 +4,8 @@ on:
   push:
     branches: [ "test/github-extensions-td-eas" ]
     paths:
-      - .github/workflows/td.yml
+      - .github/workflows/td-v2.yml
+  workflow_dispatch:
 
 jobs:
   build:
