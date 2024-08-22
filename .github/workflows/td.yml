@@ -59,8 +59,8 @@ jobs:
         with:
           accessToken: ${{ secrets.AC_ACCESS_TOKEN }}
           profileName: ${{ vars.AC_PROFILE_NAME }}
-          createProfileIfNotExists: false # $CREATE_PROFILE_IF_NOT_EXISTS
-          appPath: ${{ github.workspace }}/app/build/outputs/apk/release/app-release.apk
+          createProfileIfNotExists: ${{ vars.AC_CREATE_PROFILE_IF_NOT_EXISTS }}
+          appPath: ${{ github.workspace }}/${{ vars.AC_APP_PATH }}
           message: "Hello from Github to TD"
 
       
