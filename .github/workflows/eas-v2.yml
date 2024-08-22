@@ -51,11 +51,8 @@ jobs:
 
       - name: Appcircle Enterprise Store
         uses: appcircleio/appcircle-enterprise-store-githubaction@feat/SP-201
-        env:
-          AC_ACCESS_TOKEN: ${{ secrets.AC_ACCESS_TOKEN }}
         with:
-          personalAPIToken: $AC_ACCESS_TOKEN
-          entProfileName: ${{ vars.ENTERPRISE_PROFILE_NAME }}
+          personalAPIToken: ${{ secrets.AC_ACCESS_TOKEN }}
           appPath: ${{ github.workspace }}/${{ vars.AC_APP_PATH }}
           summary: "This is a summary."
           releaseNotes: "This is a release note."
