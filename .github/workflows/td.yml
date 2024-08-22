@@ -3,9 +3,8 @@ name: TD
 on:
   push:
     branches: [ "test/github-extensions-td-eas" ]
-  pull_request:
-    branches: [ "test/github-extensions-td-eas" ]
-  workflow_dispatch:
+    paths:
+      - .github/workflows/td.yml
 
 jobs:
   build:
@@ -53,13 +52,13 @@ jobs:
         # uses: appcircleio/appcircle-testing-distribution-githubaction@v0.0.2
         uses: appcircleio/appcircle-testing-distribution-githubaction@feat/SP-201
         env:
-          ACCESS_TOKEN: ${{ secrets.AC_ACCESS_TOKEN }}
-          PROFILE_NAME: ${{ vars.AC_PROFILE_NAME }}
-          CREATE_PROFILE_IF_NOT_EXISTS: ${{ vars.AC_CREATE_PROFILE_IF_NOT_EXISTS }}
+          # ACCESS_TOKEN: ${{ secrets.AC_ACCESS_TOKEN }}
+          # PROFILE_NAME: ${{ vars.AC_PROFILE_NAME }}
+          # CREATE_PROFILE_IF_NOT_EXISTS: ${{ vars.AC_CREATE_PROFILE_IF_NOT_EXISTS }}
           APP_PATH: ${{ github.workspace }}/app/build/outputs/apk/release/app-release.apk
         with:
-          accessToken: ${{ secrets.AC_ACCESS_TOKEN }} # $ACCESS_TOKEN
-          profileName: $PROFILE_NAME
+          accessToken: ${{ secrets.AC_ACCESS_TOKEN }}
+          profileName: ${{ vars.AC_PROFILE_NAME }}
           createProfileIfNotExists: false # $CREATE_PROFILE_IF_NOT_EXISTS
           appPath: $APP_PATH
           message: "Hello from Github to TD"
