@@ -47,12 +47,12 @@ jobs:
       - name: Build
         run: |
           echo $AC_PP_UUID
-          bundle exec fastlane android build_signed_aab
+          bundle exec fastlane android build_signed_apk
 
       - name: Find Artifacts
         run: |
           find "${GITHUB_WORKSPACE}" -type f \( -name "*.apk" -o -name "*.aab" \)
-          ls -l "${GITHUB_WORKSPACE}/app/build/outputs/invalid/"
+          # ls -l "${GITHUB_WORKSPACE}/app/build/outputs/invalid/"
 
       - name: Appcircle Enterprise Store
         uses: appcircleio/appcircle-enterprise-store-githubaction@feat/SP-201
