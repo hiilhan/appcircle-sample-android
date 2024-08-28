@@ -44,10 +44,10 @@ jobs:
           echo "$GITHUB_WORKSPACE"
           ls $GITHUB_WORKSPACE
           
-      # - name: Build
-      #   run: |
-      #     echo $AC_PP_UUID
-      #     bundle exec fastlane android build_signed_aab
+      - name: Build
+        run: |
+          echo $AC_PP_UUID
+          bundle exec fastlane android build_signed_apk
 
       - name: Find Artifacts
         run: |
