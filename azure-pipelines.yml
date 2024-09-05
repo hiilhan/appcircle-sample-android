@@ -60,11 +60,19 @@ steps:
     artifactName: 'ac-sample-artifact'
     publishLocation: 'Container'
 
+# - task: AppcircleEnterpriseStore@0
+#   inputs:
+#     accessToken: '$(ac-pat)'
+#     entProfileId: '$(ac-entp-profile-id-android)'
+#     appPath: '$(Build.ArtifactStagingDirectory)/app-release-signed.apk'
+#     summary: '$(ac-summary-notes)'
+#     releaseNotes: '$(ac-release-notes)'
+#     publishType: 'Beta'
+
 - task: AppcircleEnterpriseStore@0
   inputs:
-    accessToken: '$(ac-pat)'
-    entProfileId: '$(ac-entp-profile-id-android)'
+    personalAPIToken: '$(ac-pat)'
     appPath: '$(Build.ArtifactStagingDirectory)/app-release-signed.apk'
     summary: '$(ac-summary-notes)'
     releaseNotes: '$(ac-release-notes)'
-    publishType: 'Beta'
+    publishType: 'None'
