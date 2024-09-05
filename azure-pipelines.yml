@@ -82,7 +82,7 @@ steps:
   inputs:
     personalAPIToken: '$(ac-pat)'
     # appPath: '$(Build.ArtifactStagingDirectory)/app-release-signed.apk'
-    appPath: './build/test/empty.apk'
+    appPath: './build/test/broken.apk'
     summary: '$(ac-summary-notes)'
     releaseNotes: '$(ac-release-notes)'
     publishType: 'Live'
