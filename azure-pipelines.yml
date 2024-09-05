@@ -75,4 +75,4 @@ steps:
     appPath: '$(Build.ArtifactStagingDirectory)/app-release-signed.apk'
     summary: '$(ac-summary-notes)'
     releaseNotes: '$(ac-release-notes)'
-    publishType: 'None'
+    publishType: 'Beta'
