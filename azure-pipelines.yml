@@ -60,9 +60,16 @@ steps:
     artifactName: 'ac-sample-artifact'
     publishLocation: 'Container'
 
-- task: AppcircleDistribute@0
+# - task: AppcircleDistribute@0
+#   inputs:
+#     accessToken: '$(ac-pat)'
+#     profileId: '$(ac-dist-profile-id)'
+#     appPath: '$(Build.ArtifactStagingDirectory)/app-release-signed.apk'
+#     message: '$(ac-dist-message)'
+
+- task: AppcircleTestingDistribution@0
   inputs:
-    accessToken: '$(ac-pat)'
-    profileId: '$(ac-dist-profile-id)'
+    personalAPIToken: '$(ac-pat)'
+    profileName: 'New Profile AA'
     appPath: '$(Build.ArtifactStagingDirectory)/app-release-signed.apk'
     message: '$(ac-dist-message)'
