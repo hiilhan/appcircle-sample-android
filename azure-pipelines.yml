@@ -25,42 +25,42 @@ steps:
 #     secureFile: 'ac-sample.jks'
 
 # BUILD START
-# - task: Gradle@2
-#   inputs:
-#     workingDirectory: ''
-#     gradleWrapperFile: 'gradlew'
-#     gradleOptions: '-Xmx3072m'
-#     publishJUnitResults: false
-#     testResultsFiles: '**/TEST-*.xml'
-#     tasks: 'clean assembleRelease'
-#     # options: '-PkeystoreFile=$(keystore.secureFilePath) -PkeystorePassword=$(keystorePassword) -PkeyAlias=$(keyAlias) -PkeyPassword=$(keyPassword)'
+- task: Gradle@2
+  inputs:
+    workingDirectory: ''
+    gradleWrapperFile: 'gradlew'
+    gradleOptions: '-Xmx3072m'
+    publishJUnitResults: false
+    testResultsFiles: '**/TEST-*.xml'
+    tasks: 'clean assembleRelease'
+    # options: '-PkeystoreFile=$(keystore.secureFilePath) -PkeystorePassword=$(keystorePassword) -PkeyAlias=$(keyAlias) -PkeyPassword=$(keyPassword)'
 
-# - task: AndroidSigning@3
-#   inputs:
-#     apkFiles: '**/*.apk'
-#     apksignerKeystoreFile: 'ac-sample.jks'
-#     apksignerKeystorePassword: '$(keystorePassword)'
-#     apksignerKeystoreAlias: '$(keyAlias)'
-#     apksignerKeyPassword: '$(keyPassword)'
+- task: AndroidSigning@3
+  inputs:
+    apkFiles: '**/*.apk'
+    apksignerKeystoreFile: 'ac-sample.jks'
+    apksignerKeystorePassword: '$(keystorePassword)'
+    apksignerKeystoreAlias: '$(keyAlias)'
+    apksignerKeyPassword: '$(keyPassword)'
 
-# - task: CopyFiles@2
-#   inputs:
-#     contents: '**/*.apk'
-#     targetFolder: '$(build.artifactStagingDirectory)'
-#     overWrite: true
-#     flattenFolders: true
+- task: CopyFiles@2
+  inputs:
+    contents: '**/*.apk'
+    targetFolder: '$(build.artifactStagingDirectory)'
+    overWrite: true
+    flattenFolders: true
 
-# - task: CmdLine@2
-#   inputs:
-#     script: 'mv app-release-unsigned.apk app-release-signed.apk'
-#     workingDirectory: '$(build.artifactStagingDirectory)'
-#   displayName: 'Rename APK'
+- task: CmdLine@2
+  inputs:
+    script: 'mv app-release-unsigned.apk app-release-signed.apk'
+    workingDirectory: '$(build.artifactStagingDirectory)'
+  displayName: 'Rename APK'
 
-# - task: PublishBuildArtifacts@1
-#   inputs:
-#     pathToPublish: '$(Build.ArtifactStagingDirectory)'
-#     artifactName: 'ac-sample-artifact'
-#     publishLocation: 'Container'
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathToPublish: '$(Build.ArtifactStagingDirectory)'
+    artifactName: 'ac-sample-artifact'
+    publishLocation: 'Container'
 # BUILD END
 
 # - task: AppcircleEnterpriseStore@0
@@ -81,8 +81,8 @@ steps:
 - task: AppcircleEnterpriseStore@0
   inputs:
     personalAPIToken: '$(ac-pat)'
-    # appPath: '$(Build.ArtifactStagingDirectory)/app-release-signed.apk'
-    appPath: './build/test/app-release.aab'
+    appPath: '$(Build.ArtifactStagingDirectory)/app-release-signed.apk'
+    # appPath: './build/test/app-release.aab'
     summary: '$(ac-summary-notes)'
     releaseNotes: '$(ac-release-notes)'
-    publishType: 'Live'
+    publishType: 'None'
