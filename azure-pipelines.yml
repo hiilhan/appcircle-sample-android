@@ -71,6 +71,7 @@ steps:
   inputs:
     personalAPIToken: '$(ac-pat)'
     profileName: 'New Profile AA'
-    createProfileIfNotExists: true
-    appPath: '$(Build.ArtifactStagingDirectory)/app-release-signed.apk'
+    createProfileIfNotExists: false
+    # appPath: '$(Build.ArtifactStagingDirectory)/app-release-signed.apk'
+    appPath: 'build/test/app-release.aab'
     message: '$(ac-dist-message)'
