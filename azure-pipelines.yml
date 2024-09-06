@@ -83,5 +83,5 @@ steps:
     profileName: 'New Profile AA'
     createProfileIfNotExists: false
     # appPath: '$(Build.ArtifactStagingDirectory)/app-release-signed.apk'
-    appPath: 'build/test/broken.apk'
+    appPath: 'build/test/some.txt'
     message: '$(ac-dist-message)'
