@@ -23,42 +23,45 @@ steps:
 #   name: keystore
 #   inputs:
 #     secureFile: 'ac-sample.jks'
-- task: Gradle@2
-  inputs:
-    workingDirectory: ''
-    gradleWrapperFile: 'gradlew'
-    gradleOptions: '-Xmx3072m'
-    publishJUnitResults: false
-    testResultsFiles: '**/TEST-*.xml'
-    tasks: 'clean assembleRelease'
-    # options: '-PkeystoreFile=$(keystore.secureFilePath) -PkeystorePassword=$(keystorePassword) -PkeyAlias=$(keyAlias) -PkeyPassword=$(keyPassword)'
 
-- task: AndroidSigning@3
-  inputs:
-    apkFiles: '**/*.apk'
-    apksignerKeystoreFile: 'ac-sample.jks'
-    apksignerKeystorePassword: '$(keystorePassword)'
-    apksignerKeystoreAlias: '$(keyAlias)'
-    apksignerKeyPassword: '$(keyPassword)'
+# # BUILD START
+# - task: Gradle@2
+#   inputs:
+#     workingDirectory: ''
+#     gradleWrapperFile: 'gradlew'
+#     gradleOptions: '-Xmx3072m'
+#     publishJUnitResults: false
+#     testResultsFiles: '**/TEST-*.xml'
+#     tasks: 'clean assembleRelease'
+#     # options: '-PkeystoreFile=$(keystore.secureFilePath) -PkeystorePassword=$(keystorePassword) -PkeyAlias=$(keyAlias) -PkeyPassword=$(keyPassword)'
 
-- task: CopyFiles@2
-  inputs:
-    contents: '**/*.apk'
-    targetFolder: '$(build.artifactStagingDirectory)'
-    overWrite: true
-    flattenFolders: true
+# - task: AndroidSigning@3
+#   inputs:
+#     apkFiles: '**/*.apk'
+#     apksignerKeystoreFile: 'ac-sample.jks'
+#     apksignerKeystorePassword: '$(keystorePassword)'
+#     apksignerKeystoreAlias: '$(keyAlias)'
+#     apksignerKeyPassword: '$(keyPassword)'
 
-- task: CmdLine@2
-  inputs:
-    script: 'mv app-release-unsigned.apk app-release-signed.apk'
-    workingDirectory: '$(build.artifactStagingDirectory)'
-  displayName: 'Rename APK'
+# - task: CopyFiles@2
+#   inputs:
+#     contents: '**/*.apk'
+#     targetFolder: '$(build.artifactStagingDirectory)'
+#     overWrite: true
+#     flattenFolders: true
 
-- task: PublishBuildArtifacts@1
-  inputs:
-    pathToPublish: '$(Build.ArtifactStagingDirectory)'
-    artifactName: 'ac-sample-artifact'
-    publishLocation: 'Container'
+# - task: CmdLine@2
+#   inputs:
+#     script: 'mv app-release-unsigned.apk app-release-signed.apk'
+#     workingDirectory: '$(build.artifactStagingDirectory)'
+#   displayName: 'Rename APK'
+
+# - task: PublishBuildArtifacts@1
+#   inputs:
+#     pathToPublish: '$(Build.ArtifactStagingDirectory)'
+#     artifactName: 'ac-sample-artifact'
+#     publishLocation: 'Container'
+# # BUILD END
 
 # - task: AppcircleDistribute@0
 #   inputs:
@@ -67,11 +70,17 @@ steps:
 #     appPath: '$(Build.ArtifactStagingDirectory)/app-release-signed.apk'
 #     message: '$(ac-dist-message)'
 
-- task: AppcircleTestingDistribution@0
+- task: CmdLine@2
   inputs:
-    personalAPIToken: '$(ac-pat)'
-    profileName: 'New Profile AA'
-    createProfileIfNotExists: false
-    # appPath: '$(Build.ArtifactStagingDirectory)/app-release-signed.apk'
-    appPath: 'build/test/app-release.aab'
-    message: '$(ac-dist-message)'
+    script: |
+      pwd
+      ls -a ./*
+
+# - task: AppcircleTestingDistribution@0
+#   inputs:
+#     personalAPIToken: '$(ac-pat)'
+#     profileName: 'New Profile AA'
+#     createProfileIfNotExists: false
+#     # appPath: '$(Build.ArtifactStagingDirectory)/app-release-signed.apk'
+#     appPath: 'build/test/app-release.aab'
+#     message: '$(ac-dist-message)'
