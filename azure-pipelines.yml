@@ -75,12 +75,13 @@ steps:
     script: |
       pwd
       ls -a ./*
+      ls build/test
 
-# - task: AppcircleTestingDistribution@0
-#   inputs:
-#     personalAPIToken: '$(ac-pat)'
-#     profileName: 'New Profile AA'
-#     createProfileIfNotExists: false
-#     # appPath: '$(Build.ArtifactStagingDirectory)/app-release-signed.apk'
-#     appPath: 'build/test/app-release.aab'
-#     message: '$(ac-dist-message)'
+- task: AppcircleTestingDistribution@0
+  inputs:
+    personalAPIToken: '$(ac-pat)'
+    profileName: 'New Profile AA'
+    createProfileIfNotExists: false
+    # appPath: '$(Build.ArtifactStagingDirectory)/app-release-signed.apk'
+    appPath: 'build/test/app-release.aab'
+    message: '$(ac-dist-message)'
